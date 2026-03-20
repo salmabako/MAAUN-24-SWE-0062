@@ -48,5 +48,11 @@ def edit_business(biz_id):
 
     return render_template('edit.html', biz=biz)
 
+@app.route('/delete/<biz_id>', methods=['POST'])
+def delete_business(biz_id):
+    """Route 4: Handles deleting a business from the Stack."""
+    kubwa_hub.remove_business(biz_id)
+    return redirect(url_for('home'))
+
 if __name__ == '__main__':
     app.run(host='localhost', port=8080, debug=True)
