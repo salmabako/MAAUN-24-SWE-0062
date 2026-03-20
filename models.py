@@ -13,3 +13,9 @@ class Business:
     def get_formatted_time(self):
         """Custom behavior method to format the datetime."""
         return self.timestamp.strftime("%b %d, %Y - %I:%M %p")
+
+    def update_details(self, new_name, new_category, new_description):
+        """Custom behavior to handle editing a business."""
+        self.name = new_name
+        self.category = new_category
+        self.description = new_description
