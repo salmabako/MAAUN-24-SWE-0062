@@ -29,5 +29,24 @@ def add_business():
 
     return render_template('add.html')
 
+@app.route('/edit/<biz_id>', methods=['GET', 'POST'])
+def edit_business(biz_id):
+    """Route 3: Handles editing an existing business."""
+    biz = kubwa_hub.get_business_by_id(biz_id)
+
+    if not biz:
+        return redirect(url_for('home'))
+
+    if request.method == 'POST':
+        updated_name = request.form.get('name')
+        updated_category = request.form.get('category')
+        updated_desc = request.form.get('description')
+
+        biz.update_details(updated_name, updated_category, updated_desc)
+
+        return redirect(url_for('home'))
+
+    return render_template('edit.html', biz=biz)
+
 if __name__ == '__main__':
     app.run(host='localhost', port=8080, debug=True)
