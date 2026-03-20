@@ -9,3 +9,7 @@ class Business:
         self.category = category
         self.description = description
         self.timestamp = datetime.now()
+
+    def get_formatted_time(self):
+        """Custom behavior method to format the datetime."""
+        return self.timestamp.strftime("%b %d, %Y - %I:%M %p")
