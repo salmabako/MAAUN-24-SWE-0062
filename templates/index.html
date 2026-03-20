@@ -18,49 +18,25 @@
         --border: #e2e8f0;
       }
       * { box-sizing: border-box; }
-      body {
-        font-family: "Inter", sans-serif;
-        background-color: var(--bg);
-        color: var(--text-primary);
-        margin: 0;
-      }
-      .site-nav {
-        background: var(--surface);
-        border-bottom: 1px solid var(--border);
-        padding: 1rem 0;
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        backdrop-filter: blur(12px);
-        background: rgba(255, 255, 255, 0.85);
-      }
-      .site-nav .brand {
-        font-weight: 700;
-        font-size: 1.25rem;
-        color: var(--text-primary);
-        text-decoration: none;
-      }
+      body { font-family: "Inter", sans-serif; background-color: var(--bg); color: var(--text-primary); margin: 0; }
+      .site-nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 1rem 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); background: rgba(255, 255, 255, 0.85); }
+      .site-nav .brand { font-weight: 700; font-size: 1.25rem; color: var(--text-primary); text-decoration: none; }
       .site-nav .brand span { color: var(--accent); }
-      .btn-add {
-        background: var(--accent);
-        color: #fff;
-        border: none;
-        border-radius: 10px;
-        padding: 0.5rem 1.25rem;
-        font-weight: 600;
-        font-size: 0.875rem;
-        text-decoration: none;
-        transition: all 0.15s ease;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.375rem;
-      }
-      .btn-add:hover {
-        background: var(--accent-hover);
-        color: #fff;
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-      }
+      .btn-add { background: var(--accent); color: #fff; border: none; border-radius: 10px; padding: 0.5rem 1.25rem; font-weight: 600; font-size: 0.875rem; text-decoration: none; transition: all 0.15s ease; display: inline-flex; align-items: center; gap: 0.375rem; }
+      .btn-add:hover { background: var(--accent-hover); color: #fff; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); }
+      .page-header { padding: 2.5rem 0 1rem; }
+      .page-header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.25rem; }
+      .page-header p { color: var(--text-secondary); font-size: 0.925rem; margin: 0; }
+      .biz-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; height: 100%; display: flex; flex-direction: column; transition: all 0.2s ease; }
+      .biz-card:hover { border-color: #c7d2fe; box-shadow: 0 8px 24px rgba(99, 102, 241, 0.08); transform: translateY(-2px); }
+      .biz-card .biz-name { font-weight: 600; font-size: 1.05rem; color: var(--text-primary); margin: 0 0 0.75rem 0; line-height: 1.4; }
+      .biz-card .category-tag { display: inline-flex; align-items: center; gap: 0.375rem; background: var(--accent-light); color: var(--accent); font-weight: 500; font-size: 0.75rem; padding: 0.3em 0.75em; border-radius: 20px; white-space: nowrap; }
+      .biz-card .category-tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+      .biz-card .biz-desc { color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6; flex-grow: 1; margin: 0; }
+      .biz-card .card-footer-bar { display: flex; align-items: center; justify-content: space-between; margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+      .biz-card .timestamp { font-size: 0.75rem; color: var(--text-secondary); }
+      .btn-edit { font-size: 0.8rem; font-weight: 500; color: var(--text-secondary); border: 1px solid var(--border); background: transparent; border-radius: 8px; padding: 0.3rem 0.85rem; text-decoration: none; transition: all 0.15s ease; }
+      .btn-edit:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-light); }
     </style>
   </head>
   <body>
@@ -73,17 +49,22 @@
         </a>
       </div>
     </nav>
-    <div class="container mt-4">
-      <h4 class="fw-bold">Recent Listings</h4>
-      <p class="text-muted">Explore the latest businesses added to the directory.</p>
-      <div class="row g-4">
+    <div class="container">
+      <div class="page-header">
+        <h1>Recent Listings</h1>
+        <p>Explore the latest businesses added to the directory.</p>
+      </div>
+      <div class="row g-4 pb-5">
         {% for biz in businesses %}
         <div class="col-md-6 col-lg-4">
-          <div class="card h-100 p-3">
-            <h5>{{ biz.name }}</h5>
-            <span class="badge bg-secondary mb-2">{{ biz.category }}</span>
-            <p>{{ biz.description }}</p>
-            <small class="text-muted">{{ biz.get_formatted_time() }}</small>
+          <div class="biz-card">
+            <h5 class="biz-name">{{ biz.name }}</h5>
+            <span class="category-tag mb-3">{{ biz.category }}</span>
+            <p class="biz-desc">{{ biz.description }}</p>
+            <div class="card-footer-bar">
+              <span class="timestamp">{{ biz.get_formatted_time() }}</span>
+              <a href="/edit/{{ biz.id }}" class="btn-edit">Edit</a>
+            </div>
           </div>
         </div>
         {% else %}
