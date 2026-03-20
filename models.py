@@ -39,3 +39,11 @@ class Directory:
             if biz.id == biz_id:
                 return biz
         return None
+
+    def remove_business(self, biz_id):
+        """Removes a business from the stack by its ID."""
+        for i, biz in enumerate(self.business_stack):
+            if biz.id == biz_id:
+                self.business_stack.pop(i)
+                return True
+        return False
