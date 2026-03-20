@@ -19,3 +19,8 @@ class Business:
         self.name = new_name
         self.category = new_category
         self.description = new_description
+
+class Directory:
+    """Manages the collection of businesses using a Stack (LIFO)."""
+    def __init__(self):
+        self.business_stack = []
