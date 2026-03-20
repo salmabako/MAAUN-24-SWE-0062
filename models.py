@@ -24,3 +24,7 @@ class Directory:
     """Manages the collection of businesses using a Stack (LIFO)."""
     def __init__(self):
         self.business_stack = []
+
+    def add_business(self, business):
+        """Pushes a new business onto the stack."""
+        self.business_stack.append(business)
