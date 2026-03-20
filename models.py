@@ -28,3 +28,7 @@ class Directory:
     def add_business(self, business):
         """Pushes a new business onto the stack."""
         self.business_stack.append(business)
+
+    def get_recent_businesses(self):
+        """Returns businesses in Last-In, First-Out (LIFO) order."""
+        return list(reversed(self.business_stack))
