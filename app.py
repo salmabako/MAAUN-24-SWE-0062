@@ -14,5 +14,20 @@ def home():
     recent_businesses = kubwa_hub.get_recent_businesses()
     return render_template('index.html', businesses=recent_businesses)
 
+@app.route('/add', methods=['GET', 'POST'])
+def add_business():
+    """Route 2: Displays the form and handles adding to the Stack."""
+    if request.method == 'POST':
+        name = request.form.get('name')
+        category = request.form.get('category')
+        description = request.form.get('description')
+
+        new_biz = Business(name, category, description)
+        kubwa_hub.add_business(new_biz)
+
+        return redirect(url_for('home'))
+
+    return render_template('add.html')
+
 if __name__ == '__main__':
     app.run(host='localhost', port=8080, debug=True)
