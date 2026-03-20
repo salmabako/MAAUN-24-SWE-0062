@@ -32,3 +32,10 @@ class Directory:
     def get_recent_businesses(self):
         """Returns businesses in Last-In, First-Out (LIFO) order."""
         return list(reversed(self.business_stack))
+
+    def get_business_by_id(self, biz_id):
+        """Searches the stack for a specific business ID."""
+        for biz in self.business_stack:
+            if biz.id == biz_id:
+                return biz
+        return None
