@@ -23,8 +23,8 @@ Follow these steps to get the app running on your computer:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/salmabako/ummi.git
-cd ummi
+git clone https://github.com/salmabako/MAAUN-24-SWE-0062.git
+cd MAAUN-24-SWE-0062
 ```
 
 ### 2. Create a virtual environment
@@ -66,7 +66,7 @@ You should see the Kubwa Business Hub home page with a sample business already l
 ## Project Structure
 
 ```
-ummi/
+MAAUN-24-SWE-0062/
 ├── app.py             # Flask routes and server setup
 ├── models.py          # Business and Directory classes (OOP + Stack)
 ├── requirements.txt   # Python dependencies
