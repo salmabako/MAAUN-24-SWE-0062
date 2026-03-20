@@ -5,6 +5,9 @@ app = Flask(__name__)
 
 kubwa_hub = Directory()
 
+sample_biz = Business("Kubwa Fresh Farms", "Agriculture", "Locally sourced hydroponic vegetables.")
+kubwa_hub.add_business(sample_biz)
+
 @app.route('/')
 def home():
     """Route 1: Displays the Stack of recently added businesses."""
